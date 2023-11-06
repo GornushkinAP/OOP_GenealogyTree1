@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import Gender;
 
 import java.io.Serializable;
 
@@ -13,16 +12,17 @@ public class Person implements Serializable{
     private String name;
     private Gender gender;
     private LocalDate birthYear;
-    private LocalDate deathYear;
     private String relationship;
+    private LocalDate deathYear;
     private List<Person> children;
 
     public Person(String name, Gender gender, LocalDate birthYear, LocalDate deathYear, String relationship) {
         this.name = name;
         this.gender = gender;
         this.birthYear = birthYear;
-        this.deathYear = deathYear;
         this.relationship = relationship;
+        this.deathYear = deathYear;
+        
         this.children = new ArrayList<>();
     }
 

@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import familytree.FamilyTree;
+import familytree.Gender;
 import familytree.Person;
 import filemanager.GenealogyFileManager;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -22,6 +24,7 @@ public class Main {
                 System.out.println("ФИО: " + person.getName());
                 System.out.println("Пол: " + person.getGender());
                 System.out.println("Дата рождения: " + person.getBirthYear());
+                System.out.println("Степень родства: " + person.getRelationship());
                 System.out.println("Дети: " + person.getChildren());
         } 
     }
@@ -47,12 +50,12 @@ public class Main {
             LocalDate birthYear = LocalDate.parse(birtYearStr);
             scanner.nextLine(); 
 
-            Person person = new Person(name, gender, birthYear, birthYear, birtYearStr);
-
             System.out.print("Степень родства: ");
             String relationship = scanner.nextLine();
-             
 
+            Person person = new Person(name, gender, birthYear, birthYear, relationship);
+
+        
             System.out.print("Сколько детей у этого человека? ");
             int numChildren = scanner.nextInt();
             scanner.nextLine(); 
