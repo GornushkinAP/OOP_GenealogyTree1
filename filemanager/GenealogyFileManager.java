@@ -1,6 +1,9 @@
+package filemanager;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import familytree.Person;
 
 public class GenealogyFileManager implements FileIO {
     @Override
