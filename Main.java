@@ -105,10 +105,11 @@ public class Main {
 
                 Person child = new Person(childName, childGender, birthYear, childBirthYear, relationship);
                 person.addChildren(child);
+            }
 
-                familyTree.addPerson(person);
-
+            familyTree.addPerson(person);
             System.out.println("Информация добавлена.");
+        }
             System.out.println("Сохранить данные в файл (да/нет)? ");
             String saveData = scanner.nextLine().toLowerCase();
             if (saveData.equals("да")) {
@@ -119,9 +120,7 @@ public class Main {
                 }
             }
         }
-    }
-    }
-
+    
 
     private static void searchPersonInteractive(FamilyTree familyTree, Scanner scanner) {
         System.out.println("Введите фамилию, имя и отчество, чтобы получить информацию о нем:");
