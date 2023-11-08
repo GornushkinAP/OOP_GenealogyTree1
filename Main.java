@@ -33,7 +33,38 @@ public class Main {
         }
         familyTree.setPeople(loadedPeople);
 
+        boolean continueSorting = true;
+        while (continueSorting) {
+            System.out.println("Выберите опцию:");
+            System.out.println("1. Добавить информацию о человеке");
+            System.out.println("2. Поиск информации о человеке");
+            System.out.println("3. Выберите способ сортировки");
+            System.out.println("4. Выйти");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); 
 
+            switch (choice) {
+                case 1:
+                    addPersonInteractive(familyTree, scanner, fileManager);
+                    break;
+                case 2:
+                    searchPersonInteractive(familyTree, scanner);
+                    break;
+                case 3:
+                    chooseSortingMethod(familyTree, scanner);
+                    break;
+                case 4:
+                    continueSorting = false;
+                    break;
+                default:
+                    System.out.println("Неверный выбор. Попробуйте еще раз.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static void addPersonInteractive(FamilyTree familyTree, Scanner scanner, GenealogyFileManager fileManager) {
         while (true) {
             System.out.println("Введите информацию о человеке (или 'стоп' для выхода):");
             System.out.print("Фамилия, имя, отчество: ");
@@ -67,16 +98,16 @@ public class Main {
                 System.out.print("Пол (Мужской/Женский): ");
                 String childGenderStr = scanner.nextLine();
                 Gender childGender = Gender.valueOf(childGenderStr);
-                System.out.print("Год рождения(в формате: гггг-мм-дд): ");
+                System.out.print("Дату рождения(в формате: гггг-мм-дд): ");
                 String childBirtYearStr = scanner.nextLine();
                 LocalDate childBirthYear = LocalDate.parse(childBirtYearStr);
                             
 
                 Person child = new Person(childName, childGender, birthYear, childBirthYear, relationship);
                 person.addChildren(child);
-            }
 
-            familyTree.addPerson(person);
+                familyTree.addPerson(person);
+
             System.out.println("Информация добавлена.");
             System.out.println("Сохранить данные в файл (да/нет)? ");
             String saveData = scanner.nextLine().toLowerCase();
@@ -88,8 +119,11 @@ public class Main {
                 }
             }
         }
+    }
+    }
 
-                
+
+    private static void searchPersonInteractive(FamilyTree familyTree, Scanner scanner) {
         System.out.println("Введите фамилию, имя и отчество, чтобы получить информацию о нем:");
         String searchName = scanner.nextLine();
         Person person = familyTree.getPerson(searchName);
@@ -98,7 +132,7 @@ public class Main {
             System.out.println("Информация о человеке:");
             System.out.println("Фамилия, имя, отчество: " + person.getName());
             System.out.println("Пол: " + person.getGender());
-            System.out.println("Год рождения: " + person.getBirthYear());
+            System.out.println("Дата рождения: " + person.getBirthYear());
             System.out.println("Степень родства: " + person.getRelationship());
             System.out.println("Дети: ");
             for (Person child : person.getChildren()) {
@@ -107,7 +141,56 @@ public class Main {
         } else {
             System.out.println("Человек не найден.");
         }
-        scanner.close();
+    }
 
+
+    private static void chooseSortingMethod(FamilyTree familyTree, Scanner scanner){
+        System.out.println("Выберите способ сортировки:");
+        System.out.println("1. По имени");
+        System.out.println("2. По дате рождения");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); 
+
+        switch (choice) {
+            case 1:
+                familyTree.sortByName();
+                printSortedData(familyTree);
+                break;
+            case 2:
+                familyTree.sortByBirthYear();
+                printSortedData(familyTree);
+                break;
+            default:
+                System.out.println("Неверный выбор. Попробуйте еще раз.");
+        }
+    }
+
+
+    private static void printSortedData(FamilyTree familyTree) {
+        for (Person person : familyTree) {
+            System.out.println("ФИО: " + person.getName());
+            System.out.println("Пол: " + person.getGender());
+            System.out.println("Дата рождения: " + person.getBirthYear());
+            System.out.println("Степень родства: " + person.getRelationship());
+            System.out.println("Дети: ");
+            for (Person child : person.getChildren()) {
+                System.out.println(child.getName());
+            }
+        }   
+           
+        
+        familyTree.sortByName(); 
+        for (Person person : familyTree) {
+            
+        }
+        
+        familyTree.sortByBirthYear(); 
+        for (Person person : familyTree) {
+    
+        }
+
+       
     }
 }
+

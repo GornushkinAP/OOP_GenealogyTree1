@@ -58,7 +58,7 @@ public class FamilyTree implements Iterable<Person> {
         }
     }
 
-    public void sortByname() {
+    public void sortByName() {
         people.sort(Comparator.comparing(Person::getName)); 
         }
 
