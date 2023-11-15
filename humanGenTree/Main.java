@@ -1,3 +1,4 @@
+package humanGenTree;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,15 +13,15 @@ import filemanager.GenealogyFileManager;
 
 public class Main {
     public static void main(String[] args) {
-        FamilyTree familyTree = new FamilyTree();
+        FamilyTree<T> familyTree = new FamilyTree<>();
         Scanner scanner = new Scanner(System.in);
         GenealogyFileManager fileManager = new GenealogyFileManager();
 
-         List<Person> loadedPeople = new ArrayList<>();
+         List<T> loadedPeople = new ArrayList<>();
         try {
             loadedPeople = fileManager.readFromFile("genealogy.dat");
             System.out.println("Загруженные данные из файла:");
-            for (Person person : loadedPeople) {
+            for (T person : loadedPeople) {
                 System.out.println("ФИО: " + person.getName());
                 System.out.println("Пол: " + person.getGender());
                 System.out.println("Дата рождения: " + person.getBirthYear());
