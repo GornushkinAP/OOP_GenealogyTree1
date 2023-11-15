@@ -5,19 +5,19 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Iterator;
 
-public class FamilyTree implements Iterable<Person> {
-    private List<Person> people;
+public class FamilyTree<T> implements Iterable<T> {
+    private List<T> people;
 
     public FamilyTree() {
-        people = new ArrayList<>();
+        this.people = new ArrayList<>();
     }
 
-    public void addPerson(Person person) {
+    public void addPerson(T person) {
         people.add(person);
     }
 
-    public Person getPerson(String name) {
-        for (Person person : people) {
+    public T getPerson(String name) {
+        for (T person : people) {
             if (person.getName().equals(name)) {
                 return person;
             }
@@ -25,24 +25,24 @@ public class FamilyTree implements Iterable<Person> {
         return null;
     }
 
-    public List<Person> getPeople() {
+    public List<T> getPeople() {
         return people;
     }
 
-    public void setPeople(List<Person> people) {
+    public void setPeople(List<T> people) {
         this.people = people;
     }
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<T> iterator() {
         return new FamilyTreeIterator(people);
     }
 
-    private class FamilyTreeIterator implements Iterator<Person> {
-        private List<Person> people;
+    private class FamilyTreeIterator implements Iterator<T> {
+        private List<T> people;
         private int index;
 
-        public FamilyTreeIterator(List<Person> people) {
+        public FamilyTreeIterator(List<T> people) {
             this.people = people;
             index = 0;
         }
@@ -53,17 +53,17 @@ public class FamilyTree implements Iterable<Person> {
         }
 
         @Override
-        public Person next() {
+        public T next() {
             return people.get(index++);
         }
     }
 
-    public void sortByName() {
-        people.sort(Comparator.comparing(Person::getName)); 
+    public void sortByName(Comparator <T> comparator) {
+        people.sort(comparator); 
         }
 
-    public void sortByBirthYear() {
-        people.sort(Comparator.comparing(person -> person.getBirthYear()));
+    public void sortByBirthYear(Comparator <T> comparator) {
+        people.sort(comparator);
         }
 
 }
