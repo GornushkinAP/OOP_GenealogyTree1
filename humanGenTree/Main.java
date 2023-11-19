@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import familytree.FamilyTree;
-import familytree.Gender;
-import familytree.Person;
-import filemanager.GenealogyFileManager;
+import humanGenTree.familytree.FamilyTree;
+import humanGenTree.familytree.Gender;
+import humanGenTree.familytree.Person;
+import humanGenTree.filemanager.GenealogyFileManager;
 
 
 public class Main {
